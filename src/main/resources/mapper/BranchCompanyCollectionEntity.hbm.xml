@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.BranchCompanyCollectionEntity" table="BranchCompanyCollection" schema="dachuang">
+        <id name="branchCompanyCollid">
+            <column name="BranchCompanyCollid" sql-type="int(11)"/>
+        </id>
+        <property name="uid">
+            <column name="Uid" sql-type="int(11)"/>
+        </property>
+        <property name="bCid">
+            <column name="BCid" sql-type="int(11)"/>
+        </property>
+        <property name="star">
+            <column name="star" sql-type="int(11)" not-null="true"/>
+        </property>
+        <many-to-one name="user1ByUid" class="com.lvyou.entity.database.User1Entity" insert="false" update="false">
+            <column name="Uid"/>
+        </many-to-one>
+        <many-to-one name="branchComanyByBCid" class="com.lvyou.entity.database.BranchComanyEntity" insert="false" update="false">
+            <column name="BCid"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

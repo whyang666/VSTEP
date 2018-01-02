@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.HostEntity" table="host" schema="dachuang">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="year">
+            <column name="year" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="siteType">
+            <column name="siteType" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="siteName">
+            <column name="siteName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="host">
+            <column name="host" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.User1Entity" table="User1" schema="dachuang">
+        <id name="uid">
+            <column name="UID" sql-type="int(11)"/>
+        </id>
+        <property name="uname">
+            <column name="Uname" sql-type="varchar(255)"/>
+        </property>
+        <property name="upassword">
+            <column name="Upassword" sql-type="varchar(255)"/>
+        </property>
+        <property name="unickname">
+            <column name="Unickname" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="uemail">
+            <column name="Uemail" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="uphone">
+            <column name="Uphone" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+        <set name="branchCompanyCollectionsByUid" inverse="true">
+            <key>
+                <column name="Uid"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.BranchCompanyCollectionEntity"/>
+        </set>
+        <set name="branchCompanyCommentsByUid" inverse="true">
+            <key>
+                <column name="uid"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.BranchCompanyCommentEntity"/>
+        </set>
+        <set name="headCompanyCollectionsByUid" inverse="true">
+            <key>
+                <column name="UID"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyCollectionEntity"/>
+        </set>
+        <set name="headCompanyCommentsByUid" inverse="true">
+            <key>
+                <column name="UID"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyCommentEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

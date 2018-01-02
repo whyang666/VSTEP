@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.RecruitmentEntity" table="recruitment" schema="dachuang">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="post">
+            <column name="post" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="fzlGzjy">
+            <column name="FZL_GZJY" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="fzlZdxl">
+            <column name="FZL_ZDXL" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="fzlGljy">
+            <column name="FZL_GLJY" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="fzlGzxz">
+            <column name="FZL_GZXZ" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="total">
+            <column name="total" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="salary">
+            <column name="salary" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="entityName">
+            <column name="entityName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="date">
+            <column name="date" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="qylx">
+            <column name="QYLX" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

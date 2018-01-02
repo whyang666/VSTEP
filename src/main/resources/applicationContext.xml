@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties" file-encoding="utf-8"
+                                  ignore-unresolvable="true"/>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+          p:driverClass="${jdbc.driverClassName}"
+          p:jdbcUrl="${jdbc.url}"
+          p:user="${jdbc.username}"
+          p:password="${jdbc.password}"
+
+          p:testConnectionOnCheckout="${jdbc.c3p0.testConnectionOnCheckout}"
+          p:testConnectionOnCheckin="${jdbc.c3p0.testConnectionOnCheckin}"
+          p:idleConnectionTestPeriod="${jdbc.c3p0.idleConnectionTestPeriod}"
+          p:initialPoolSize="${jdbc.c3p0.initialPoolSize}"
+          p:minPoolSize="${jdbc.c3p0.minPoolSize}"
+          p:maxPoolSize="${jdbc.c3p0.maxPoolSize}"
+          p:maxIdleTime="${jdbc.c3p0.maxIdleTime}"
+          p:unreturnedConnectionTimeout="25"
+          p:acquireRetryAttempts="5"
+
+    />
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="packagesToScan">-->
+        <!--<list>-->
+        <!--&lt;!&ndash; 可以加多个包 &ndash;&gt;-->
+        <!--<value>com.lvyou.entity</value>-->
+        <!--</list>-->
+        <!--</property>-->
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <!--<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>-->
+                <!--<prop key="hibernate.connection.url">jdbc:mysql://whyangser.com:3306/dachuang</prop>-->
+                <!--<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>-->
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.connection.release_mode">auto</prop>
+                <prop key="hibernate.transaction.auto_close_session">true</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://123.206.70.35:3306/dachuang</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</prop>
+            </props>
+        </property>
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:mapper/User1Entity.hbm.xml</value>
+                <value>classpath:mapper/BranchComanyEntity.hbm.xml</value>
+                <value>classpath:mapper/BranchCompanyCollectionEntity.hbm.xml</value>
+                <value>classpath:mapper/BranchCompanyCommentEntity.hbm.xml</value>
+                <value>classpath:mapper/BrandEntity.hbm.xml</value>
+                <value>classpath:mapper/Case1Entity.hbm.xml</value>
+                <value>classpath:mapper/HeadCompanyEntity.hbm.xml</value>
+                <value>classpath:mapper/HeadCompanyCollectionEntity.hbm.xml</value>
+                <value>classpath:mapper/HeadCompanyCommentEntity.hbm.xml</value>
+                <value>classpath:mapper/ScoreEntity.hbm.xml</value>
+                <value>classpath:mapper/BusinessEntity.hbm.xml</value>
+                <value>classpath:mapper/CompanybusEntity.hbm.xml</value>
+                <value>classpath:mapper/PatentEntity.hbm.xml</value>
+                <value>classpath:mapper/ProductionEntity.hbm.xml</value>
+                <value>classpath:mapper/SoftwareEntity.hbm.xml</value>
+                <value>classpath:mapper/SearchEntity.hbm.xml</value>
+                <value>classpath:mapper/Rights12315Entity.hbm.xml</value>
+                <value>classpath:mapper/RecruitmentEntity.hbm.xml</value>
+                <value>classpath:mapper/HostEntity.hbm.xml</value>
+                <value>classpath:mapper/NewsEntity.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置Hibernate事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- 配置事务异常封装 -->
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <!--&lt;!&ndash; 基于数据源的事务管理器 &ndash;&gt;-->
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"-->
+        <!--p:dataSource-ref="dataSource" />-->
+
+    <!-- 配合<tx:advice>和<aop:advisor>完成了事务切面的定义 -->
+    <!-- 使用强大的切点表达式是语言轻松定义目标方法 -->
+    <aop:config proxy-target-class="true">
+        <!-- 通过aop定义事务增强切面 -->
+        <aop:pointcut expression=" execution(* com.lvyou.service..*(..))"
+                      id="serviceMethod"/>
+        <!-- 引用事务增强 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
+    </aop:config>
+    <!-- 事务增强 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 事务属性定义 -->
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="applicationContext" class="com.lvyou.util.ApplicationContextAwareImp"/>
+
+
+    <!--自己写的代码-->
+    <bean id="userDao" class="com.lvyou.dao.UserDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="branchComanyDao" class="com.lvyou.dao.BranchComanyDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="caseDao" class="com.lvyou.dao.CaseDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="headCompanyDao" class="com.lvyou.dao.HeadCompanyDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="searchDao" class="com.lvyou.dao.SearchDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="scoreDao" class="com.lvyou.dao.ScoreDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--<bean id="searchService" class="com.lvyou.service.SearchServiceImp">-->
+    <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <bean id="productionDao" class="com.lvyou.dao.ProductionDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="case1Dao" class="com.lvyou.dao.Case1DaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="patentDao" class="com.lvyou.dao.PatentDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="softwareDao" class="com.lvyou.dao.SoftwareDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="brandDao" class="com.lvyou.dao.BrandDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="hostDao" class="com.lvyou.dao.HostDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="right12315Dao" class="com.lvyou.dao.Right12315DaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="recruitmentDao" class="com.lvyou.dao.RecruitmentDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="newsDao" class="com.lvyou.dao.NewsDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>

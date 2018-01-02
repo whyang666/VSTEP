@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.BranchComanyEntity" table="BranchComany" schema="dachuang">
+        <id name="bCid">
+            <column name="BCid" sql-type="int(11)"/>
+        </id>
+        <property name="bCname">
+            <column name="BCname" sql-type="varchar(255)"/>
+        </property>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)"/>
+        </property>
+        <property name="legalperson">
+            <column name="legalperson" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="enterpriseType">
+            <column name="enterprise_type" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="date">
+            <column name="date" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="addnum">
+            <column name="addnum" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="category">
+            <column name="category" sql-type="char(2)" length="2" not-null="true"/>
+        </property>
+        <property name="state">
+            <column name="state" sql-type="char(2)" length="2" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <!--<set name="headCompanyByHCname" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="HCname" not-null="true"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyEntity"/>-->
+        <!--</set>-->
+        <!--<set name="branchCompanyCollectionsByBCid" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="BCid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.BranchCompanyCollectionEntity"/>-->
+        <!--</set>-->
+        <!--<set name="branchCompanyCommentsByBCid" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="bcid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.BranchCompanyCommentEntity"/>-->
+        <!--</set>-->
+        <!--<set name="companybusesByBCid" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="BCid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.CompanybusEntity"/>-->
+        <!--</set>-->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.ScoreEntity" table="Score" schema="dachuang">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)"/>
+        </property>
+        <property name="branch">
+            <column name="Branch" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="revoke">
+            <column name="Revoke" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="cancellation">
+            <column name="Cancellation" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="website">
+            <column name="Website" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="practitioners">
+            <column name="Practitioners" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="recruit">
+            <column name="Recruit" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="complaint">
+            <column name="Complaint" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="involved">
+            <column name="Involved" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="court">
+            <column name="Court" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sentence">
+            <column name="Sentence" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="book">
+            <column name="Book" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="software">
+            <column name="Software" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="patent">
+            <column name="Patent" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="trademark">
+            <column name="Trademark" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="fSituation">
+            <column name="FSituation" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="personnel">
+            <column name="Personnel" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="negative">
+            <column name="Negative" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="innovate">
+            <column name="Innovate" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="finace">
+            <column name="Finace" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="tolal">
+            <column name="Tolal" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.Case1Entity" table="Case1" schema="dachuang">
+        <id name="caseid">
+            <column name="Caseid" sql-type="int(11)"/>
+        </id>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)"/>
+        </property>
+        <property name="cause">
+            <column name="cause" sql-type="varchar(1000)" length="1000"/>
+        </property>
+        <property name="value">
+            <column name="value" sql-type="varchar(255)"/>
+        </property>
+        <property name="date">
+            <column name="date" sql-type="varchar(255)"/>
+        </property>
+        <property name="type">
+            <column name="type" sql-type="varchar(255)"/>
+        </property>
+        <property name="act">
+            <column name="act" sql-type="varchar(500)" length="500"/>
+        </property>
+        <property name="accroding">
+            <column name="accroding" sql-type="varchar(500)" length="500"/>
+        </property>
+        <property name="punishreason">
+            <column name="punishreason" sql-type="varchar(1000)" length="1000" not-null="true"/>
+        </property>
+        <set name="headCompanyByHCname" inverse="true">
+            <key>
+                <column name="HCname" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.HeadCompanyEntity" table="HeadCompany" schema="dachuang">
+        <id name="hCid">
+            <column name="HCid" sql-type="int(11)"/>
+        </id>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="hCadd">
+            <column name="HCadd" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <!--<many-to-one name="branchComanyByHCname" class="com.lvyou.entity.database.BranchComanyEntity" insert="false" update="false">-->
+            <!--<column name="HCname" not-null="true"/>-->
+        <!--</many-to-one>-->
+        <!--<many-to-one name="brandByHCname" class="com.lvyou.entity.database.BrandEntity" insert="false" update="false">-->
+            <!--<column name="HCname" not-null="true"/>-->
+        <!--</many-to-one>-->
+        <!--<many-to-one name="case1ByHCname" class="com.lvyou.entity.database.Case1Entity" insert="false" update="false">-->
+            <!--<column name="HCname" not-null="true"/>-->
+        <!--</many-to-one>-->
+        <!--<many-to-one name="patentByHCname" class="com.lvyou.entity.database.PatentEntity" insert="false" update="false">-->
+            <!--<column name="HCname" not-null="true"/>-->
+        <!--</many-to-one>-->
+        <!--<many-to-one name="productionByHCname" class="com.lvyou.entity.database.ProductionEntity" insert="false" update="false">-->
+            <!--<column name="HCname" not-null="true"/>-->
+        <!--</many-to-one>-->
+        <!--<many-to-one name="softwareByHCname" class="com.lvyou.entity.database.SoftwareEntity" insert="false" update="false">-->
+            <!--<column name="HCname" not-null="true"/>-->
+        <!--</many-to-one>-->
+        <!--<set name="headCompanyCollectionsByHCid" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="HCid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyCollectionEntity"/>-->
+        <!--</set>-->
+        <!--<set name="headCompanyCollectionsByHCid_0" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="HCid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyCollectionEntity"/>-->
+        <!--</set>-->
+        <!--<set name="headCompanyCommentsByHCid" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="HCid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyCommentEntity"/>-->
+        <!--</set>-->
+        <!--<set name="headCompanyCommentsByHCid_0" inverse="true">-->
+            <!--<key>-->
+                <!--<column name="HCid"/>-->
+            <!--</key>-->
+            <!--<one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyCommentEntity"/>-->
+        <!--</set>-->
+    </class>
+</hibernate-mapping>

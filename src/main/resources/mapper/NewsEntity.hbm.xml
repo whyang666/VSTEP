@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.NewsEntity" table="News" schema="dachuang">
+        <id name="newsId">
+            <column name="NewsId" sql-type="int(11)"/>
+        </id>
+        <property name="address">
+            <column name="Address" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="fact">
+            <column name="Fact" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="date">
+            <column name="Date" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

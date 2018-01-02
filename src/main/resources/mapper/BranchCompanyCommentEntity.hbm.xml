@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.BranchCompanyCommentEntity" table="BranchCompanyComment" schema="dachuang">
+        <id name="bccid">
+            <column name="bccid" sql-type="int(11)"/>
+        </id>
+        <property name="uid">
+            <column name="uid" sql-type="int(11)"/>
+        </property>
+        <property name="bcid">
+            <column name="bcid" sql-type="int(11)"/>
+        </property>
+        <property name="comments">
+            <column name="comments" sql-type="varchar(255)"/>
+        </property>
+        <property name="rate">
+            <column name="rate" sql-type="int(11)" not-null="true"/>
+        </property>
+        <many-to-one name="user1ByUid" class="com.lvyou.entity.database.User1Entity" insert="false" update="false">
+            <column name="uid"/>
+        </many-to-one>
+        <many-to-one name="branchComanyByBcid" class="com.lvyou.entity.database.BranchComanyEntity" insert="false" update="false">
+            <column name="bcid"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

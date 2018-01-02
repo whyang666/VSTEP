@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.SearchEntity" table="Search" schema="dachuang">
+        <id name="bCid">
+            <column name="BCid" sql-type="int(11)"/>
+        </id>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="bCname">
+            <column name="BCname" sql-type="varchar(255)"/>
+        </property>
+        <property name="legalperson">
+            <column name="legalperson" sql-type="varchar(255)" not-null="true"/>
+        </property>
+
+        <property name="hCid">
+            <column name="HCid" sql-type="int(11)"/>
+        </property>
+        <property name="business">
+            <column name="business" sql-type="varchar(255)"/>
+        </property>
+    </class>
+</hibernate-mapping>

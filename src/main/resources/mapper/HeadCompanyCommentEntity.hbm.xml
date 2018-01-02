@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.HeadCompanyCommentEntity" table="HeadCompanyComment" schema="dachuang">
+        <id name="cid">
+            <column name="CID" sql-type="int(11)"/>
+        </id>
+        <property name="uid">
+            <column name="UID" sql-type="int(11)"/>
+        </property>
+        <property name="hCid">
+            <column name="HCid" sql-type="int(11)"/>
+        </property>
+        <property name="comments">
+            <column name="comments" sql-type="varchar(255)"/>
+        </property>
+        <property name="rate">
+            <column name="rate" sql-type="int(11)" not-null="true"/>
+        </property>
+        <many-to-one name="user1ByUid" class="com.lvyou.entity.database.User1Entity" insert="false" update="false">
+            <column name="UID"/>
+        </many-to-one>
+        <many-to-one name="headCompanyByHCid" class="com.lvyou.entity.database.HeadCompanyEntity" insert="false" update="false">
+            <column name="HCid"/>
+        </many-to-one>
+        <many-to-one name="headCompanyByHCid_0" class="com.lvyou.entity.database.HeadCompanyEntity" insert="false" update="false">
+            <column name="HCid"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

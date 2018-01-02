@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.ProductionEntity" table="production" schema="dachuang">
+        <id name="proid">
+            <column name="proid" sql-type="int(11)"/>
+        </id>
+        <property name="proName">
+            <column name="proName" sql-type="varchar(255)"/>
+        </property>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)"/>
+        </property>
+        <property name="logDate">
+            <column name="logDate" sql-type="datetime"/>
+        </property>
+        <set name="headCompanyByHCname" inverse="true">
+            <key>
+                <column name="HCname" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.lvyou.entity.database.SoftwareEntity" table="software" schema="dachuang">
+        <id name="sid">
+            <column name="Sid" sql-type="varchar(255)"/>
+        </id>
+        <property name="industryType">
+            <column name="industryType" sql-type="varchar(255)"/>
+        </property>
+        <property name="stype">
+            <column name="Stype" sql-type="varchar(255)"/>
+        </property>
+        <property name="sname">
+            <column name="Sname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sbriefName">
+            <column name="SbriefName" sql-type="varchar(255)"/>
+        </property>
+        <property name="version">
+            <column name="version" sql-type="varchar(255)"/>
+        </property>
+        <property name="logDate">
+            <column name="logDate" sql-type="varchar(255)"/>
+        </property>
+        <property name="hCname">
+            <column name="HCname" sql-type="varchar(255)"/>
+        </property>
+        <set name="headCompanyByHCname" inverse="true">
+            <key>
+                <column name="HCname" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.lvyou.entity.database.HeadCompanyEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
